@@ -7,9 +7,9 @@ Cypress.Commands.add(
   (email = Cypress.env('email'), password = Cypress.env('password')) => {
     cy.get('.chat-room--chat--header--menu--container').click()
     cy.get('.arena-dropdown-menu').contains('Login').click()
-    cy.findByPlaceholderText('Your email').type(email)
+    cy.findByPlaceholderText('Your email', { timeout: 8000 }).type(email)
     cy.get('.arena-btn').click()
-    cy.findByPlaceholderText('Password').type(password)
+    cy.findByPlaceholderText('Password', { timeout: 8000 }).type(password)
     cy.get('.live-login-second--form--btn').click()
   }
 )
@@ -19,7 +19,7 @@ Cypress.Commands.add('signUpFromSettingsMenu', () => {
   cy.get('.arena-dropdown-menu').contains('Login').click()
   cy.iframe('.live-mini-login-modal--frame')
     .as('loginFrame')
-    .findByPlaceholderText('Your email')
+    .findByPlaceholderText('Your email', { timeout: 8000 })
     .type(faker.internet.email())
   cy.get('@loginFrame').find('.login--welcome--continue-btn').click()
   cy.get('@loginFrame').find('.name').first().type(faker.name.firstName())
