@@ -1,0 +1,21 @@
+{
+  "name": "arena-live-chat",
+  "version": "1.0.0",
+  "description": "Automated tests with Cypress at Arena Live Chat app",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx cypress run",
+    "cy:open": "npx cypress open"
+  },
+  "keywords": [
+    "E2E",
+    "Cypress",
+    "Tests"
+  ],
+  "author": "Benjamin Pinto",
+  "license": "ISC",
+  "devDependencies": {
+    "@testing-library/cypress": "^8.0.3",
+    "cypress": "^10.3.0"
+  }
+}
