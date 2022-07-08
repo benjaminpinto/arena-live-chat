@@ -6,5 +6,6 @@ module.exports = defineConfig({
       // implement node event listeners here
     },
     baseUrl: 'https://go.arena.im/chat/cesar/Xed5mok',
+    chromeWebSecurity: false,
   },
 })
