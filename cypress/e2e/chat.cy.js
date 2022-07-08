@@ -3,7 +3,8 @@ describe('Check chat functionality', () => {
   const chatInput = 'react-input-emoji--input'
   const chatSendButton = '.arena-icon-send'
   const chatHistory = '.chat-room-message-list--animation'
-  const heartIcon = 'reaction-container-3CjQOrY8X5zw5nWdErgi'
+  const heartIcon =
+    '.arena-chat-widget--message-content-reactions-icon-react-heart'
   const emojiList = '.emoji-mart-category-list'
 
   beforeEach(() => {
@@ -24,10 +25,10 @@ describe('Check chat functionality', () => {
     cy.get(chatHistory)
       .children()
       .last()
-      .findByTestId(heartIcon)
+      .find(heartIcon)
       .click({ force: true })
       .then(($el) => {
-        cy.wrap($el).children().first().should('have.class', 'jlvFBu')
+        cy.wrap($el).should('have.class', 'jlvFBu')
       })
   })
 

@@ -15,6 +15,7 @@ describe('Check "moderators only" private chat messages within a custom live-cha
     cy.signUpFromSettingsMenu().as('signUp')
 
     cy.contains('Go Direct').click({ force: true })
+    cy.wait(2000)
     cy.contains('Mod').first().click({ force: true })
     cy.wait(3000)
     cy.findAllByTestId('react-input-emoji--input')
