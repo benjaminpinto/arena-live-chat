@@ -8,9 +8,13 @@ module.exports = defineConfig({
     baseUrl: 'https://go.arena.im/chat/cesar/Xed5mok',
     chromeWebSecurity: false,
     video: false,
-    defaultCommandTimeout: 15000,
-    pageLoadTimeout: 15000,
-    execTimeout: 15000,
+    defaultCommandTimeout: 10000,
+    pageLoadTimeout: 10000,
+    execTimeout: 10000,
     specPattern: 'cypress/tests',
+    retries: {
+      runMode: 3,
+      openMode: 2,
+    },
   },
 })
