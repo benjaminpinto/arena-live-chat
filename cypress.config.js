@@ -14,7 +14,7 @@ module.exports = defineConfig({
     specPattern: 'cypress/tests',
     retries: {
       runMode: 3,
-      openMode: 2,
+      openMode: 1,
     },
   },
 })

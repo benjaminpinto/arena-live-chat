@@ -28,7 +28,7 @@ Or, run `npm run cy:open` to open Cypress in interactive mode.
 
 > **Note:** This project uses fake data to perform tests, so the file `cypress.env.json` is being versioned. With sensible data, this doesn't should happen.
 
-> **Important:** This project uses Github actions to implement a simple CI workflow. If you want to clone it and run at your own repository, remember to update project's ID at [`cypress.config.js`](./cypress.config.js) file, and set your CYPRESS_RECORD_KEY at Github secrets.
+> **Important:** This project uses Github actions to implement a simple CI workflow. The [script](./.github/workflows/cypress-tests.yml) is ready with a matrix to make it possible run tests in parallel, if a Cypress Dashboard is available. The plugin [Sorry-Cypress](https://github.com/sorry-cypress/sorry-cypress) is also an alternative.
 
 ## About the project structure
 
@@ -55,13 +55,14 @@ Or, run `npm run cy:open` to open Cypress in interactive mode.
 
 #### Send direct messages to moderators through iFrames embed
 
-| ID     | Scenario                                 | Automated? | Status         |                             Issue?                              |                                                                        Obs                                                                        |
-| ------ | ---------------------------------------- | :--------: | -------------- | :-------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------: |
-| TC06   | Direct messages to moderators only (E2E) |   ✅ Yes   | 🟢 Passing     |                                -                                |                          Some API responses are making tests flaky. There are a few cy.wait() that must be removed asap.                          |
-| TC07   | Direct messages to moderators only (API) |     -      | -              |                                -                                |                                                        This test case is subdivided below                                                         |
-| TC07.1 | Check API auth with valid credentials    |   ✅ Yes   | 🟢 Passing     |                                                                 |                                                                                                                                                   |
-| TC07.2 | Check API auth with valid credentials    |   ✅ Yes   | 🟢 Passing     |                                                                 |                                                                                                                                                   |
-| TC07.3 | Create a new live chat through API       |   ✅ Yes   | ⛔ Not passing | [#1](https://github.com/benjaminpinto/arena-live-chat/issues/1) | False positive. Graphql is returning code 200, but the 'mutation createChatRoom' generates an INTERNAL_SERVER_ERROR. Details on the opened issue. |
+| ID     | Scenario                                            | Automated? | Status         |                             Issue?                              |                                                                                       Obs                                                                                        |
+| ------ | --------------------------------------------------- | :--------: | -------------- | :-------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| TC06   | Direct messages to moderators only (E2E)            |   ✅ Yes   | 🟢 Passing     |                                -                                |                                         Some API responses are making tests flaky. There are a few cy.wait() that must be removed asap.                                          |
+| TC07   | Direct messages to moderators only (API)            |     -      | -              |                                -                                |                                                                        This test case is subdivided below                                                                        |
+| TC07.1 | Check API auth with valid credentials               |   ✅ Yes   | 🟢 Passing     |                                                                 |                                                                                                                                                                                  |
+| TC07.2 | Check API auth with invalid credentials             |   ✅ Yes   | 🟢 Passing     |                                                                 |                                                                                                                                                                                  |
+| TC07.3 | Create a new live chat through API with right token |   ✅ Yes   | 🟢 Passing     |                                                                 |                                                                                                                                                                                  |
+| TC07.4 | Create a new live chat through API with wrong token |   ⛔ No    | ⛔ Not passing | [#1](https://github.com/benjaminpinto/arena-live-chat/issues/1) | Trying to create a chat with right body and wrong token, Graphql is returning code 200. Mutation createChatRoom generates an INTERNAL_SERVER_ERROR. Details on the opened issue. |
 
 ---
 

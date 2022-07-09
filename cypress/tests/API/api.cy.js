@@ -17,11 +17,15 @@ describe('Check functionalities through API ', () => {
 
     cy.requestGraphQL(
       arenaChat.query,
-      arenaChat.operationName,
-      arenaChat.variables
+      arenaChat.variables,
+      arenaChat.operationName
     ).then((response) => {
-      expect(response.status).to.eq(200)
+      expect(response.status).to.equal(200)
+
       console.log(response.body)
+      expect(response.body.data.createChatRoom.name).to.be.a('string')
+      expect(response.body.data.createChatRoom.slug).to.be.a('string')
+      expect(response.body.data.createChatRoom._id).to.be.a('string')
     })
   })
 })

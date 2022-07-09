@@ -1,10 +1,12 @@
-// GraphQL object
+// GraphQL object to create a new live chat
+
+const { faker } = require('@faker-js/faker')
 
 export const arenaChat = {
   operationName: 'createChatRoom',
   variables: {
     input: {
-      name: 'New Chat',
+      name: faker.random.word(),
       language: 'en-us',
       chatPreModerationIsEnabled: false,
       chatPreviewEnabled: true,
@@ -29,5 +31,5 @@ export const arenaChat = {
     },
   },
   query:
-    'mutation createChatRoom($input: CreateChatRoomInput!) {\n  createChatRoom(input: $input) {\n    _id\n    chatPreviewEnabled\n    createdAt\n    createdBy\n    slug\n    name\n  }\n}\n',
+    'mutation createChatRoom($input: CreateChatRoomInput!) {  createChatRoom(input: $input) {    _id    chatPreviewEnabled    createdAt    createdBy    slug    name  }}',
 }
