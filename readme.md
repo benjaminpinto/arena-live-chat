@@ -32,9 +32,9 @@ Or, run `npm run cy:open` to open Cypress in interactive mode.
 
 ## About the project structure
 
-- Spec files are localized at [`cypress/e2e`](/cypress/e2e/) folder;
+- Spec files are localized at [`cypress/tests`](/cypress/tests/), separated into e2e and api folders;
 - Custom commands are organized at [`support`](cypress/support) folder;
-- Test scenarios TC06 and TC07 demands the live chat being published in a different webpage, through an iframe. Attending this requirement, it's available at this [Netlify page](https://62c7ceb65521e247db8bf23d--lambent-caramel-a02409.netlify.app/).
+- Test scenarios TC06 and TC07 demands the live chat being published in a different webpage, through an iframe. Attending this requirement, the embed code was generated and it's available at this [Netlify page](https://62c7ceb65521e247db8bf23d--lambent-caramel-a02409.netlify.app/).
 
 ## Test scenarios
 
@@ -55,10 +55,13 @@ Or, run `npm run cy:open` to open Cypress in interactive mode.
 
 #### Send direct messages to moderators through iFrames embed
 
-| ID   | Scenario                                 | Automated? | Status     | Issue? |                                               Obs                                                |
-| ---- | ---------------------------------------- | :--------: | ---------- | :----: | :----------------------------------------------------------------------------------------------: |
-| TC06 | Direct messages to moderators only (E2E) |   ✅ Yes   | 🟢 Passing |   -    | Some API responses are making tests flaky.There are a few cy.wait() that should be removed asap. |
-| TC07 | Direct messages to moderators only (API) |   ✅ Yes   | 🟢 Passing |   -    |                                                -                                                 |
+| ID     | Scenario                                 | Automated? | Status         |                             Issue?                              |                                                                        Obs                                                                        |
+| ------ | ---------------------------------------- | :--------: | -------------- | :-------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------: |
+| TC06   | Direct messages to moderators only (E2E) |   ✅ Yes   | 🟢 Passing     |                                -                                |                         Some API responses are making tests flaky.There are a few cy.wait() that should be removed asap.                          |
+| TC07   | Direct messages to moderators only (API) |     -      | -              |                                -                                |                                                        This test case is subdivided below                                                         |
+| TC07.1 | Check API auth with valid credentials    |   ✅ Yes   | 🟢 Passing     |                                                                 |                                                                                                                                                   |
+| TC07.2 | Check API auth with valid credentials    |   ✅ Yes   | 🟢 Passing     |                                                                 |                                                                                                                                                   |
+| TC07.3 | Create a new live chat through API       |   ✅ Yes   | ⛔ Not passing | [#1](https://github.com/benjaminpinto/arena-live-chat/issues/1) | False positive. Graphql is returning code 200, but the 'mutation createChatRoom' generates an INTERNAL_SERVER_ERROR. Details on the opened issue. |
 
 ---
 
